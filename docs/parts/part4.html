@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 4: Add a second screen and navigation</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>IOS102 Introduction to the Xamarin Designer for iOS</header>
+
+    <section id="main">
+        <h2>Exercise 4: Add a second screen and navigation</h2>
+<p>The primary goal of this lab will be to add a second View Controller to the storyboard design surface and display it programmatically.</p>
+<figure class="figure">
+<img src="./images/ex4_complete.png" alt="image" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the starter solution</h2>
+<p>This exercise is a continuation of the previous exercise. You can use your existing solution or begin from the prior <strong>Exercise 3 &gt; Completed</strong> solution in your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/IOS102/">course materials</a>.</p>
+
+<hr>
+<h2>Add an about view controller</h2>
+<ol>
+<li>Open <strong>Main.Storyboard</strong>.</li>
+<li>Search for <strong>View Controller</strong> in the Toolbox and <strong>add an empty View Controller</strong> to your storyboard design surface.</li>
+<li>Select the new View Controller by clicking on the bottom bar.</li>
+<li>In the Properties pane under <strong>Identity</strong>, set the <strong>Class</strong> field to <strong>AboutViewController</strong>. <em>Notice that it creates two new files in your project</em>.</li>
+<li>Set the <strong>Storyboard ID</strong> field to <strong>AboutViewController</strong> so we can instantiate the new screen programmatically.</li>
+<li>Add some text to your About screen using a label or a text view.</li>
+</ol>
+
+<hr>
+<h2>Add the about button</h2>
+<ol>
+<li>Search for <strong>Button</strong> in the Toolbox and drag a new button to the upper right corner of your original View Controller (not About).</li>
+<li>Select the button, and in the properties pane, change its <strong>Type</strong> to <strong>Info Light</strong>.</li>
+<li>Set the button's name to <strong>buttonAbout</strong>.</li>
+</ol>
+<figure class="figure">
+<img src="./images/about_screen.png" alt="image" />
+</figure>
+
+<hr>
+<h2>Navigate to the about screen</h2>
+<ol>
+<li>Double-click on the new button to add an event handler method.</li>
+<li>Delete the default throw exception code.</li>
+<li>In the new method, <strong>instantiate the about screen</strong> using the <code>Storyboard.InstantiateViewController</code> method.</li>
+<li>Add code to display the about screen using the <code>PresentViewController</code> method.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>partial void buttonAbout_TouchUpInside (UIButton sender)
+{
+   var aboutVC = (AboutViewController)this.Storyboard.InstantiateViewController(&quot;AboutViewController&quot;);
+
+   this.PresentViewController(aboutVC, true, null);
+}
+</code></pre>
+
+
+<hr>
+<h2>Dismiss the about screen</h2>
+<p>Our about screen is being presented modally and we currently don't have any way to dismiss it. Below are the step-by-step instructions to dismiss the about screen. </p>
+<ol>
+<li>Open <strong>Main.Storyboard</strong> and add a button to the bottom of the About View Controller.</li>
+<li>Change the button text to <strong>Close</strong> and name the button <strong>buttonClose</strong>.</li>
+<li>Wire up the <code>TouchUpInside</code> Event Handler using any of the techniques from the previous exercise.</li>
+<li>In the body of the Event Handler method, call <code>DismissViewController</code>. The first parameter specifies if the View Controller should animate when it's dismissed. The second allows you to specify an Action to be called once the View Controller is dismissed. This can be set to <em>null</em>.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>partial class AboutViewController : UIViewController
+{
+   ...
+   partial void buttonClose_TouchUpInside (UIButton sender)
+   {
+      this.DismissViewController(true, null);
+   }
+}
+</code></pre>
+
+
+<hr>
+<h2>Exercise summary</h2>
+<p>Congratulations! In this lab, you created a second screen using the Xamarin.iOS designer, and both displayed and dismissed it programmatically. </p>
+<p>You can view the completed solution in the <strong>Exercise 4 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/IOS102/">course materials</a>.</p>
+<div>
+</div>
+<figure class="figure">
+<img src="./images/ex4_complete.png" alt="image" />
+</figure>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>

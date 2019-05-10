@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 3: Add behavior to the UI</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>IOS102 Introduction to the Xamarin Designer for iOS</header>
+
+    <section id="main">
+        <h2>Exercise 3: Add behavior to the UI</h2>
+<p>The primary goal of this lab is to add behavior to your views using the View Controller's code behind. The finished UI should look something like this:</p>
+<figure class="figure">
+<img src="./images/ex3_complete.png" alt="image" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the starter solution</h2>
+<p>This exercise is a continuation of the previous exercise. You can use your existing solution or begin from the prior <strong>Exercise 2 &gt; Completed</strong> solution in your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/IOS102/">course materials</a>.</p>
+
+<hr>
+<h2>Add logic and resources</h2>
+<p>We're going to display &quot;fireworks&quot; in our application. To save time, we will use a provided particle generator class file from the <strong>Exercise 3 &gt; Assets</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/IOS102/">course materials</a> to create our fireworks.</p>
+<ol>
+<li>Add the <strong>SimpleParticleGen.cs</strong> file to your fireworks project.</li>
+<li>Add the three (3) xamlogo png files to your project's <strong>Resources</strong> folder.</li>
+</ol>
+
+<hr>
+<h2>Utilize the resources</h2>
+<ol>
+<li>Open <strong>ViewController.cs</strong> and <strong>add a class level reference</strong> to the <strong>SimpleParticleGen</strong> class you just added named fireworks.</li>
+<li>In the <code>ViewDidLoad</code> method, instantiate the <code>fireworks</code> particle generator. For the first argument use the <code>UIImage.FromFile</code> method to load <strong>xamlogo.png</strong>,  the second argument should be the View Controller's View (<code>this.View</code>).</li>
+</ol>
+<pre class="prettyprint-collapse"><code>public partial class ViewController : UIViewController
+{
+    <mark>SimpleParticleGen fireworks;</mark>
+    ...
+    public override void ViewDidLoad ()
+   {
+      base.ViewDidLoad ();
+
+     <mark>fireworks = new SimpleParticleGen (UIImage.FromFile (&quot;xamlogo.png&quot;), View);</mark>
+    }
+</code></pre>
+
+
+<hr>
+<h2>Assign names to controls</h2>
+<p>In order to interact with our controls programmatically, we'll need a reference usable in the view controller's code.This reference is provided automatically when you name the control in the Designer.</p>
+<ol>
+<li>Open <strong>Main.storyboard</strong>.</li>
+<li>Select the switch.</li>
+<li>In properties pane, set the switch's name to <strong>switchNight</strong>.</li>
+</ol>
+<figure class="figure">
+<img src="./images/switch_properties.png" alt="image" />
+</figure>
+<ol start="4">
+<li>Set the switch's default state to off in the Properties pane in the <strong>Switch</strong> section, uncheck <strong>State</strong>. </li>
+<li>Set the button's name to <strong>buttonStart</strong>.</li>
+<li>Set the slider's name to <strong>sliderSize</strong>.</li>
+<li>Open <strong>ViewController.designer.cs</strong> and inspect the generated outlets.</li>
+</ol>
+<pre class="prettyprint"><code>[Outlet]
+[GeneratedCode (&quot;iOS Designer&quot;, &quot;1.0&quot;)]
+UIButton buttonStart { get; set; }
+
+[Outlet]
+[GeneratedCode (&quot;iOS Designer&quot;, &quot;1.0&quot;)]
+UISlider sliderSize { get; set; }
+
+[Outlet]
+[GeneratedCode (&quot;iOS Designer&quot;, &quot;1.0&quot;)]
+UISwitch switchNight { get; set; }
+</code></pre>
+
+
+<hr>
+<h2>Add behavior to the button</h2>
+<p>Now that we've named the button, we can access it from the View Controller's code behind to show the fireworks.</p>
+<ol>
+<li>Open <strong>ViewController.cs</strong>.</li>
+<li>In the <code>ViewDidLoad</code> method, add a delegate to call the particle generator <strong>firework's</strong> <code>Start</code> method when the button is clicked. Remember, we use the <code>TouchUpInside</code> EventHandler.</li>
+<li>Run the application and press the <strong>Start</strong> button.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>public override void ViewDidLoad ()
+{
+   ...
+   <mark>buttonStart.TouchUpInside += delegate(object sender, EventArgs e)</mark>
+   <mark>{</mark>
+   <mark>   fireworks.Start();</mark>
+   <mark>};</mark>
+}
+</code></pre>
+
+
+<hr>
+<h2>Add behavior to the switch</h2>
+<p>We can also use the designer to help us wire up events for UIKit controls.</p>
+<ol>
+<li>Open <strong>Main.storyboard</strong> and select the switch by single clicking on the control on the design surface.</li>
+<li>In the Properties pane, select the <strong>Events</strong> section.</li>
+<li>In the <strong>Value</strong> section, type in a method handler name for <strong>Changed: SwitchNight_ValueChanged</strong> and press <strong>return</strong>.</li>
+</ol>
+<ide name="vs">
+<ol start="4">
+<li>Open <strong>ViewController.cs</strong> and create a <strong>partial void</strong> method that accepts a <strong>UISwitch</strong> with the same name: <strong>SwitchNight_ValueChanged</strong>. Autocomplete should recognize the method name and complete the signature.</li>
+<li>Inspect <strong>ViewController.designer.cs</strong>. You should see a new partial method <code>SwitchNight_ValueChanged</code>.</li>
+<li>We can determine the switch's state by checking its boolean <code>On</code> property. If the switch is on, set the View Controller's background color to a dark color, otherwise set it to white.</li>
+</ol>
+</ide>
+<ide name="xs">
+<ol start="4">
+<li>Select a location for the new event handler method in <strong>ViewController.cs</strong>.</li>
+<li>Inspect <strong>ViewController.designer.cs</strong>. You should see a new partial method <code>SwitchNight_ValueChanged</code>.</li>
+<li>We can determine the switch's state by checking its boolean <code>On</code> property. If the switch is on, set the View Controller's background color to a dark color, otherwise set it to white.</li>
+</ol>
+</ide>
+<pre class="prettyprint-collapse"><code>partial void SwitchNight_ValueChanged (UISwitch sender)
+{
+   if(switchNight.On)
+      this.View.BackgroundColor = UIColor.FromRGB(25,25,112);
+   else
+      this.View.BackgroundColor = UIColor.White;
+} 
+</code></pre>
+
+
+<hr>
+<h2>Add behavior to the slider</h2>
+<p>We can also use the designer to help us wire up events for UIKit controls.</p>
+<ol>
+<li>Open <strong>Main.storyboard</strong>.</li>
+<li>Select the slider.</li>
+<li>In the Properties pane, select the <strong>Events</strong> section.</li>
+<li>In the <strong>Value</strong> section, type in a method handler name for changed: <strong>SliderSize_ValueChanged</strong>. Create the partial method declaration as you did in the previous section.</li>
+<li>In the new method, set the <strong>fireworks'</strong> <code>ScaleMax</code> property to <strong>sliderSize's Value</strong>. <em>Hint: You'll need to cast the value to an <strong>nfloat</strong>.</em></li>
+<li>Run the app. Verify that both the switch and slider work correctly.</li>
+</ol>
+<pre class="prettyprint-collapse"><code>partial void SliderSize_ValueChanged (UISlider sender)
+{
+   fireworks.ScaleMax = (nfloat)sliderSize.Value;
+}
+</code></pre>
+
+<p>Think about which of the techniques we've done. Do you prefer one over the other?</p>
+
+<hr>
+<h2>Exercise summary</h2>
+<p>Congratulations! In this lab, you added behavior to your designer-defined controls programmatically.</p>
+<p>You can view the completed solution in the <strong>Exercise 3 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/IOS102/">course materials</a>.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>
