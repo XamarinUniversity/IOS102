@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 1: Create and lay out a single view application</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>IOS102 Introduction to the Xamarin Designer for iOS</header>
+
+    <section id="main">
+        <h2>Exercise 1: Create and lay out a single view application</h2>
+<p>The primary goal of this lab is to teach you how to create a new iOS application and add a basic UI using the iOS Designer.</p>
+<p>The finished UI should look something like this:</p>
+<figure class="figure">
+<img src="./images/ex1_complete.png" alt="image" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Create the Fireworks application</h2>
+<ide name="vs">
+<ol>
+<li>
+Create a new iOS application using the <strong>iPhone &#10148; Single View App</strong> template. 
+<ul>
+<li>Name it <em>Fireworks</em>. </li>
+</ul>
+</li>
+</ol>
+<figure class="figure">
+<img src="images/lab1-vs-new-app.png" alt="image" />
+</figure>
+</ide>
+<ide name="xs">
+<ol>
+<li>Create a new iOS application using the <strong>Single View App</strong> template. </li>
+<li>Name it <em>Fireworks</em>. </li>
+<li>Uncheck <strong>iPad</strong> from the supported devices.</li>
+</ol>
+<figure class="figure">
+<img src="images/lab1-vsm-new-app.png" alt="image" />
+</figure>
+<figure class="figure">
+<img src="images/lab1-vsm-new-app2.png" alt="image" />
+</figure>
+</ide>
+
+<hr>
+<h2>Disable size classes</h2>
+<p>The iOS Designer includes support for Size Classes. These are APIs that can be used to fine-tune your UI based on device screen size.
+For simplicity we won't be using Size Classes in our exercises but they're a great feature to explore once you're comfortable with Auto Layout.</p>
+<ide name="vs">
+<ol>
+<li>Open <strong>Main.storyboard</strong> and wait for the designer to load.</li>
+<li>Click on the design surface <em>outside</em> of the view controller. This will give you access to the properties for the storyboard.</li>
+<li>In the <strong>Properties</strong> pane, uncheck <strong>Use Size Classes</strong>.</li>
+</ol>
+<figure class="figure">
+<img src="./images/size_class_vs.png" alt="image" />
+</figure>
+<ol start="4">
+<li>In the popup, choose to keep size class data for iPhone and click <strong>Disable</strong> to dismiss the dialog.</li>
+</ol>
+<figure class="figure">
+<img src="./images/disable_size_classes_vs.png" alt="image" />
+</figure>
+</ide>
+<ide name="xs">
+<ol>
+<li>Open <strong>Main.storyboard</strong> and wait for the designer to load.</li>
+<li>Click on the design surface <em>outside</em> of the view controller. This will give you access to the properties for the storyboard.</li>
+<li>In the <strong>Properties</strong> pane, uncheck <strong>Use Size Classes</strong>.</li>
+</ol>
+<figure class="figure">
+<img src="./images/size_class.png" alt="image" />
+</figure>
+<ol start="4">
+<li>In the popup, choose to keep size class data for iPhone and click <strong>Disable</strong> to dismiss the dialog..</li>
+</ol>
+<figure class="figure">
+<img src="./images/disable_size_classes.png" alt="image" />
+</figure>
+</ide>
+
+<hr>
+<h2>Add labels</h2>
+<ide name="vs">
+<ol>
+<li>Look in the Toolbox for a <strong>Label</strong>. <em>Tip: To find your views more quickly, you can use the Search Bar at the top of the Toolbox.</em> </li>
+</ol>
+<figure class="figure">
+<img src="./images/toolbox_label-vs.png" alt="image" />
+</figure>
+<ol start="2">
+<li>Drag a label to the lower left corner of the view controller on the design surface. Make use of the blue guidelines to help you with spacing.</li>
+<li>Double click on the top label to change its text to <strong>Night:</strong>. You can do this on the storyboard or in the properties pane.</li>
+</ol>
+<figure class="figure">
+<img src="./images/lab1-Label-vs.png" alt="image" />
+</figure>
+<ol start="4">
+<li>Drag a second label and place it below the first and align them on the left edge.</li>
+<li>Change the text on the lower label to <strong>Size:</strong>.</li>
+<li>Use the round dragging controls to expand the width of both labels to make sure the text is completely visible.</li>
+</ol>
+</ide>
+<ide name="xs">
+<ol>
+<li>Look in the Toolbox for a <strong>Label</strong>. <em>Tip: To find your views more quickly, you can use the Search Bar at the top of the Toolbox.</em> </li>
+</ol>
+<figure class="figure">
+<img src="./images/toolbox_label.png" alt="image" />
+</figure>
+<ol start="2">
+<li>Drag a label to the lower left corner of the view controller on the design surface. Make use of the blue guidelines to help you with spacing.</li>
+<li>Double click on the top label to change its text to <strong>Night:</strong>. You can do this on the storyboard or in the properties pane.</li>
+</ol>
+<figure class="figure">
+<img src="./images/lab1-Label.png" alt="image" />
+</figure>
+<ol start="4">
+<li>Drag a second label and place it below the first and align them on the left edge.</li>
+<li>Change the text on the lower label to <strong>Size:</strong>.</li>
+<li>Use the <em>round dragging controls</em> to expand the width of both labels to make sure the text is completely visible.</li>
+</ol>
+</ide>
+
+<hr>
+<h2>Add additional controls</h2>
+<ide name="vs">
+<ol>
+<li>Search for a <strong>Switch</strong> in the Toolbox and place it to the right of the first Label <strong>(Night:)</strong>.</li>
+<li>Search for a <strong>Button</strong> and place it to the right of the Switch you just added.</li>
+<li>Use the Properties pane to set the button's <strong>Background</strong>. </li>
+<li>You will find this under the <em>View</em> section in the Property pane when the button is selected.</li>
+<li>You will need to change the color from <em>Default</em> to <em>Custom</em> to select a custom color from the color picker as shown below. The completed solution uses green, but feel free to pick the color you prefer.</li>
+<li>Depending on the color you choose, you may need to change the <strong>Text Color</strong> property under the <strong>Button</strong> section to make it visible. </li>
+</ol>
+<img src="./images/lab1-changeColor-vs1.png" alt="image" /> <img src="./images/lab1-changeColor-vs2.png" alt="image" />
+<ol start="4">
+<li>Change the <strong>Title</strong> of the button to <strong>Start</strong> using the properties pane.</li>
+<li>Search for a <strong>Slider</strong> and add it to the right of the bottom label.</li>
+<li>Expand the width of the slider to take up the remaining width of the screen.</li>
+</ol>
+</ide>
+<ide name="xs">
+<ol>
+<li>Search for a <strong>Switch</strong> in the Toolbox and place it to the right of the first Label <strong>(Night:)</strong>.</li>
+<li>Search for a <strong>Button</strong> and place it to the right of the Switch you just added.</li>
+<li>Use the Properties pane to set the button's <strong>Background Color</strong>. You will find this under the <em>View</em> section. The completed solution uses Green, but feel free to pick the color you prefer. Depending on the color you choose, you may need to change the Text Color under the Button section to make it visible. </li>
+</ol>
+<figure class="figure">
+<img src="./images/lab1-changeColor.png" alt="image" />
+</figure>
+<ol start="4">
+<li>Change the <strong>Title</strong> of the button to <strong>Start</strong> using the properties pane.</li>
+<li>Search for a <strong>Slider</strong> and add it to the right of the bottom label.</li>
+<li>Expand the width of the slider to take up the remaining width of the screen.</li>
+</ol>
+</ide>
+
+<hr>
+<h2>Run the application</h2>
+<ol>
+<li>Compare your screen to the finished lab and make sure it looks similar. </li>
+</ol>
+<figure class="figure">
+<img src="./images/ex1_complete.png" alt="image" />
+</figure>
+<p>Once you're satisfied with the results, run the application using the iOS simulator. </p>
+<p>Try rotating the device using the <strong>Hardware</strong> menu. Try different simulator sizes - iPhone 4s, iPhone 5, iPhone 6, iPhone 6 Plus, etc. to see what happens to the controls. </p>
+<p>Did you notice that the controls don't adjust to screen size or orientation? Maybe they disappeared or moved to a different location on the screen. That's because we dragged the controls onto the view surface in the designer and set the frame. The problem is that this is a fixed positioning mentality. The controls stay in that position regardless of the orientation or what type of device you're using.</p>
+<p>How do we correct this problem of having our controls in a fixed position? Check out the next section to learn how to make your app more responsive.</p>
+
+<hr>
+<h2>Exercise summary</h2>
+<p>Congratulations! In this lab you created a new single view iOS application and used the Xamarin.iOS Storyboard Designer to create the UI.</p>
+<p>You can view the completed solution in the <strong>Exercise 1 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/IOS102/">course materials</a>.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>

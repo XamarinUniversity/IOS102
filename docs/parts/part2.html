@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+    <title>Exercise 2: Use Auto Layout in your application</title>
+    <link rel="stylesheet" type="text/css" href="./res/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="./res/styles/styles.css">
+</head>
+
+<body>
+    <!-- Use the same title as the StartHere -->
+    <header>IOS102 Introduction to the Xamarin Designer for iOS</header>
+
+    <section id="main">
+        <h2>Exercise 2: Use Auto Layout in your application</h2>
+<p>The primary goal of this exercise is to teach you how to update your Fireworks application to use constraints to size and position your views relative to the view controller. The finished UI will look something like this:</p>
+<figure class="figure">
+<img src="./images/ex2_complete.png" alt="image" style="max-height: 500px;" />
+</figure>
+<blockquote class="info-quote">To complete the exercise, you will need <a href="https://www.visualstudio.com/" target="_blank">Visual Studio for Windows or macOS</a> with the <a href="https://visualstudio.microsoft.com/xamarin/" target="_blank">Xamarin development tools</a> installed. You will also need either an emulator/simulator or a device to run the exercise on. Please see the <a href="https://docs.microsoft.com/xamarin/cross-platform/get-started/installation/" target="_blank">setup page</a> if you need help installing the Xamarin development environment.
+</blockquote>
+
+<hr>
+<h2>Open the starter solution</h2>
+<p>This exercise is a continuation of the previous exercise. You can use your existing solution or begin from the prior <strong>Exercise 1 &gt; Completed</strong> solution in your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/IOS102/">course materials</a>.</p>
+
+<hr>
+<h2>Apply recommended constraints</h2>
+<p>For several of the controls, we can use very basic constraints.</p>
+<ol>
+<li>Open <strong>Main.storyboard</strong>.</li>
+<li>Select the <strong>Night:</strong> label.</li>
+<li>Switch to <strong>Constraint Editing Mode</strong> by clicking the toolbar button above the Storyboard's design surface.</li>
+</ol>
+<figure class="figure">
+<img src="images/constraints_toolbar.png" alt="Constraints mode buttons found above the Designer window contents." title="Constraints mode buttons" />
+<figcaption class="figure-caption">Constraints mode buttons</figcaption>
+</figure>
+<ol start="4">
+<li>Constrain the left side of the <strong>Night:</strong> label by dragging the T-shaped handle to the left side of your view controller. Notice how the View's leading margin guideline is displayed in green as soon as you start dragging the handle. This line will turn blue as you move the handle onto it to indicate a value constraint target. You'll use this as a guide to set up the button's leading edge constraint. With only one constraint, our label will be underconstrained.</li>
+</ol>
+<figure class="figure">
+<img src="images/constraint_dragging_label.png" alt="Dragging a label's left constraint to set it in relation to the parent view controller's guide." style="width: 250px; max-width: 100%;" title="Drag label's left guide to view controller guide" />
+<figcaption class="figure-caption">Drag label's left guide to view controller guide</figcaption>
+</figure>
+<ol start="5">
+<li>Click the constraint warning icon on the bottom-right of your view controller and choose <strong>Add constraints</strong> to have the designer add the additional &quot;Y position&quot; constraint necessary to fully constrain it.</li>
+</ol>
+<figure class="figure">
+<img src="images/add-missing-constraints.png" alt="Adding missing constraints to an under-constrained view via the warning dialog." style="width: 250px; max-width: 100%;" title="Add missing constraints" />
+<figcaption class="figure-caption">Add missing constraints</figcaption>
+</figure>
+<ol start="6">
+<li>Do the same for the adjacent switch, creating the left constraint based on the right of the label we just constrained and having the designer add the other required constraint. (Do not add constraints yet for the button or the slider.)</li>
+<li>Run the application and try rotating the simulator or device to landscape (<strong>Hardware</strong> &gt; <strong>Rotate Left</strong>).</li>
+</ol>
+
+<hr>
+<h2>Add constraints using the Designer</h2>
+<p>We want the button to stretch and take up any available space. Adding just the recommended constraints would add fixed value constraints for width and height, so we'll add all the constraints to the button manually. </p>
+<ol>
+<li>Select the button in the designer.</li>
+<li>Ensure you are in <strong>Constraint Editing Mode</strong> by clicking the toolbar button above the Storyboard's design surface.</li>
+<li>Drag the right-edge T-shaped constraint handle and add a constraint to the right guide of the view controller.</li>
+<li>Edit the constant value of the newly created constraint to <code>0</code>, either by double-clicking the constraint directly on the designer surface or double-clicking it within <strong>Properties</strong> &gt; <strong>Layout</strong> &gt; <strong>Constraints</strong>.</li>
+</ol>
+<figure class="figure">
+<img src="./images/edit-button-constraint-constant.png" alt="Editing the newly created constraint constant value to zero." style="width: 250px; max-width: 100%;" title="Edit constraint constant" />
+<figcaption class="figure-caption">Edit constraint constant</figcaption>
+</figure>
+<ol start="4">
+<li>Drag the left-edge constraint handle to add a constraint to the left edge of the switch.</li>
+<li>Drag the center constraint handle to add a vertical centering constraint to the switch.</li>
+<li>Run the application and try rotating the simulator or device to landscape mode.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex2_btn_constraints.png" alt="Screenshot of current app running, showing the newly constrained controls in the view controller." title="Run the app" />
+<figcaption class="figure-caption">Run the app</figcaption>
+</figure>
+
+<hr>
+<h2>Add constraints to the slider</h2>
+<p>Repeating what we did with the button, let's constrain the slider.</p>
+<ol>
+<li>Drag the right-edge constraint handle and add a constraint to the right guide of the view controller.</li>
+<li>Drag the left-edge constraint handle to add a constraint to the left edge of the <strong>Size:</strong> label.</li>
+<li>Drag the center constraint handle to add a vertical centering constraint to the <strong>Size:</strong> label.</li>
+<li>Run the application and try rotating the simulator or device to landscape.</li>
+</ol>
+<figure class="figure">
+<img src="./images/ex2_complete.png" alt="Screenshot of current app running, now showing the slider constrained to the view controller." title="Run the app" />
+<figcaption class="figure-caption">Run the app</figcaption>
+</figure>
+
+<hr>
+<h2>Exercise summary</h2>
+<p>Congratulations! In this lab, you added constraints to your views to allow them to dynamically size and position themselves on screen.</p>
+<p>You can view the completed solution in the <strong>Exercise 2 &gt; Completed</strong> folder of your copy of the cloned or downloaded <a href="https://github.com/XamarinUniversity/IOS102/">course materials</a>.</p>
+
+
+        <div class="align-right">
+            <a href="../StartHere.html">Go Back</a>
+        </div>
+
+    </section>
+
+    <script src="./res/js/jquery.min.js"></script>
+    <script src="./res/js/jquery.imagemapster.min.js"></script>
+    <script src="./res/js/imagemap.js"></script>
+    <script src="./res/js/prettify.js"></script>
+    <script src="./res/js/script.js"></script>
+
+    <footer>Copyright (C) 2018 Xamarin Inc., Microsoft. All rights reserved.<br><a target="_blank" href="http://university.xamarin.com">Visit Xamarin University for more classes and content</a></footer>
+
+</body>
+</html>
